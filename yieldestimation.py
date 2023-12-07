@@ -220,7 +220,7 @@ def init():
 
 try:
     # Read data from csv 
-    data_df = pd.read_csv('data/data.csv')
+    data_df = pd.read_csv('data.csv')
     # Load SVM classification model
     clf = joblib.load('model/SVM_model_BHSb_C_1_gamma_Scale_noSoil.pkl')
     #print("model loaded successfully!")
