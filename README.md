@@ -44,4 +44,4 @@ Thanks to Rui Xu for his assistance in collecting aerial images; Tsunghan Han, S
 ____
 # License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/Javi-RS/Cotton_Yield_Estimation/blob/main/LICENSE) file for details.
