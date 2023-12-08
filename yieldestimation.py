@@ -55,11 +55,11 @@ def pixelsRemoval(img_RGB, img_Lab):
     ExG = 1.5*Gnorm - Rnorm - Bnorm;
     
     ExR = cv.normalize(ExR, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U)
-    #thR, ExR = cv.threshold(ExR, 0, 255, cv.THRESH_OTSU);
+    thR, ExR = cv.threshold(ExR, 0, 255, cv.THRESH_OTSU);
     ExR = ExR.astype(np.int16)
 
     ExG = cv.normalize(ExG, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U)
-    #thG, ExG = cv.threshold(ExG, 0, 255, cv.THRESH_OTSU);
+    thG, ExG = cv.threshold(ExG, 0, 255, cv.THRESH_OTSU);
     ExG = ExG.astype(np.int16)
 
     mask_noVegetation = cv.normalize(cv.normalize(np.subtract(ExG,ExR) * -1, 
@@ -88,11 +88,11 @@ def pixelsRemoval(img_RGB, img_Lab):
     Exa = 1*anorm - Lnorm - bnorm;
     
     ExL = cv.normalize(ExL, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U)
-    #thL, ExL = cv.threshold(ExL, 0, 255, cv.THRESH_OTSU);
+    thL, ExL = cv.threshold(ExL, 0, 255, cv.THRESH_OTSU);
     ExL = ExL.astype(np.int16)
 
     Exa = cv.normalize(Exa, None, 0, 255, cv.NORM_MINMAX, cv.CV_8U)
-    #tha, Exa = cv.threshold(Exa, 0, 255, cv.THRESH_OTSU);
+    tha, Exa = cv.threshold(Exa, 0, 255, cv.THRESH_OTSU);
     Exa = Exa.astype(np.int16)
 
     mask_noSoil = cv.normalize(cv.normalize(np.subtract(Exa,ExL) * -1, 
@@ -219,6 +219,11 @@ def init():
     data_df = pd.read_csv('data.csv')
 
 try:
+    # Create uploads directory
+    if not os.path.exists('./uploads'):
+        os.mkdir('./uploads')
+        print('created uploads directory!')
+
     # Read data from csv 
     data_df = pd.read_csv('data.csv')
     # Load SVM classification model
@@ -303,9 +308,9 @@ def upload_file():
         # Use splitext() to get filename and extension separately.
         (name, ext) = os.path.splitext(fileName)
         # Save uploaded image
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
         # and read it
-        image = cv.imread(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image = cv.imread(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
         img_ = cv.cvtColor(image, cv.COLOR_BGR2RGB)
         fig0 = plt.imshow(img_)
         plt.axis('off')
