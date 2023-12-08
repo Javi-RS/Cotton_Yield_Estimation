@@ -1,20 +1,18 @@
-# Cotton_Yield_Estimation
+# Cotton_Yield_Estimation Containerization
 
-This repository houses essential files and test images for running our web application designed to estimate cotton yield from aerial imagery. This work is a key part of the research paper titled "Cotton Yield Estimation From Aerial Imagery Using Machine Learning Approaches," published in the journal Frontiers in Plant Science. You can find the paper [here](https://doi.org/10.3389/fpls.2022.870181).
+This repository houses essential files and test images for containerizing our web app designed to estimate cotton yield from aerial imagery. This work is a key part of the research paper titled "Cotton Yield Estimation From Aerial Imagery Using Machine Learning Approaches," published in the journal Frontiers in Plant Science. You can find the paper [here](https://doi.org/10.3389/fpls.2022.870181).
 
 Our web app utilizes Flask and gunicorn to operate an SVM pixel classifier, enabling accurate cotton yield estimation from 2D imagery. To streamline deployment, a Docker container image is available at [javirodsan/yieldestimation:latest](https://hub.docker.com/r/javirodsan/yieldestimation) on Docker Hub. This Docker image is based on ``python:3.8-slim-buster`` and ``OpenCV`` and automatically installs all required libraries for seamless execution of the web app.
 
-
-
 ## Running the container
 
-You can download the container image to your local machine by pulling it from the remote repository:
+You can download the container image (~880MB) to your local machine by pulling it from the remote repository:
 
 ```
 docker pull javirodsan/yieldestimation:latest
 ```
 
-Or you can run it directly from the remote repository:
+Or you can run it directly:
 
 ```
 docker run -ti -p 8080:8080 javirodsan/yieldestimation:latest
